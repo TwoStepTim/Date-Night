@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Special Date Picker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container-fluid py-5">
+    <div class="row justify-content-center align-items-center">
+        <!-- Image Top on mobile -->
+        <div class="col-12 col-md-4 text-center mb-3 mb-md-0 fade-container" id="fade-container-left">
+            <!-- Placeholder for the image top (left on desktop) -->
+            <div class="fade-image" id="left-image-1"></div>
+            <div class="fade-image" id="left-image-2"></div>
+        </div>
+        
+        <!-- Form Center always -->
+        <div class="col-12 col-md-4">
+            <form id="dateForm" class="form-background">
+                <h2 class="mb-4 text-center">Happy Week Anniversary!</h2>
+                <div class="form-group">
+                    <label for="date">Select Date:</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Select Time:</label>
+                    <input type="time" class="form-control" id="time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="activity">Choose an Activity:</label>
+                    <select class="form-control" id="activity" name="activity">
+                        <option value="Dinner">Dinner</option>
+                        <option value="Movie">Movie</option>
+                        <option value="Walk in the park">Walk in the park</option>
+                        <option value="Museum visit">Museum visit</option>
+                        <option value="Concert">Concert</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        
+        <!-- Image Bottom on mobile -->
+        <div class="col-12 col-md-4 text-center fade-container" id="fade-container-right">
+            <!-- Placeholder for the image bottom (right on desktop) -->
+            <div class="fade-image" id="right-image-1"></div>
+            <div class="fade-image" id="right-image-2"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+<script type="text/javascript">
+    document.getElementById('dateForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        emailjs.sendForm('your-service-id', 'your-template-id', this)
+            .then(function() {
+                alert('Date Request Sent!');
+                document.getElementById('dateForm').reset();
+            }, function(error) {
+                alert('Failed to send the date request. Please try again.');
+                console.log('FAILED...', error);
+            });
+    });
+
+    // Arrays of images for each container
+    const leftImages = [
+        '/T(v)M/img1.JPG',
+        '/T(v)M/img2.JPG',
+        '/T(v)M/img3.JPG',
+        '/T(v)M/img4.JPG',
+        '/T(v)M/img5.JPG',
+        '/T(v)M/img6.JPG'
+    ];
+    const rightImages = [
+        '/T(v)M/img7.JPG',
+        '/T(v)M/img8.JPG',
+        '/T(v)M/img9.JPG',
+        '/T(v)M/img10.JPG',
+        '/T(v)M/img11.JPG',
+        '/T(v)M/img12.JPG'
+    ];
+
+    // Function to set random images from arrays
+    function setRandomImages() {
+        const leftImage = leftImages[Math.floor(Math.random() * leftImages.length)];
+        const rightImage = rightImages[Math.floor(Math.random() * rightImages.length)];
+
+        // Set background images for left container
+        document.getElementById('left-image-1').style.backgroundImage = `url(${leftImage})`;
+        document.getElementById('left-image-2').style.backgroundImage = `url(${leftImage})`;
+
+        // Set background images for right container
+        document.getElementById('right-image-1').style.backgroundImage = `url(${rightImage})`;
+        document.getElementById('right-image-2').style.backgroundImage = `url(${rightImage})`;
+    }
+
+    // Call the function on page load
+    window.onload = setRandomImages;
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<div class="form-group">
+            <label for="date">Select Date:</label>
+            <input type="date" class="form-control" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+            <label for="time">Select Time:</label>
+            <input type="time" class="form-control" id="time" name="time" required>
+        </div>
+        <div class="form-group">
+            <label for="activity">Choose an Activity:</label>
+            <select class="form-control" id="activity" name="activity">
+                <option value="Dinner">Dinner</option>
+                <option value="Movie">Movie</option>
+                <option value="Walk in the park">Walk in the park</option>
+                <option value="Museum visit">Museum visit</option>
+                <option value="Concert">Concert</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>

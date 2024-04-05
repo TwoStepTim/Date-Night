@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://use.typekit.net/pic4jmj.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- Close button -->
+    <div class="close">
+        <i class="fa fa-close"></i>
+    </div>
+  
+    <!-- Heart icon and input field -->
+    <div class="heart">
+        <i class="fa fa-heart"></i>
+    </div>
+    
+    <div class="container input">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <form id="dateForm" class="form-background">
+                    <h2 class="mb-4 text-center">Happy Week Anniversary!</h2>
+                    <div class="form-group">
+                        <label for="date">Select Date:</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Select Time:</label>
+                        <input type="time" class="form-control" id="time" name="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity">Choose an Activity:</label>
+                        <select class="form-control" id="activity" name="activity">
+                            <option value="Dinner">Dinner</option>
+                            <option value="Movie">Movie</option>
+                            <option value="Walk in the park">Walk in the park</option>
+                            <option value="Museum visit">Museum visit</option>
+                            <option value="Other">Lazy Dinner</option>
+                            <option value="Other">Ice Skating</option>
+                            <option value="Other">Pinic</option>
+                            <option value="Other">Fancy Dinner</option>
+                            <option value="Other">Game Night</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button> <!-- Use btn-block to make the button full-width -->
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+   
+     <script>
+        (function() {
+            emailjs.init('6SCQv-0QRAdrfTbgx'); // Replace YOUR_USER_ID with your actual EmailJS user ID
+            
+            document.getElementById('dateForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+    
+                // Get form data
+                var formData = new FormData(this);
+                
+                // Convert form data to object
+                var formDataObj = {};
+                formData.forEach(function(value, key){
+                    formDataObj[key] = value;
+                });
+    
+                // Send email with form data
+                emailjs.send('service_qw97te8', 'template_xe3v3ol', formDataObj)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        alert('Date Request Sent!');
+                        document.getElementById('dateForm').reset(); // Reset the form after successful submission
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        alert('Failed to send the date request. Please try again.');
+                    });
+            });
+        })();
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
